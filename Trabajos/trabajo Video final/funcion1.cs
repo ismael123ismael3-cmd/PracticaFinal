@@ -6,54 +6,26 @@ namespace Trabajos.trabajo_Video_final
 {
     public class funcion1
     {
-        public static void saludar()
+        public static int kilosDisponibles;
+        public static void CalcularRacionComida()
         {
-            Console.WriteLine("Bienvenido a la clase nro 2");
+
+            if (kilosDisponibles < 50)
+            {
+                Console.WriteLine("--> RACIÓN DE EMERGENCIA: Solo se autoriza 1/4 de ración por soldado.");
+                Console.WriteLine("    Notificación: Reservas en estado crítico.");
+            }
+            else if (kilosDisponibles <= 150)
+            {
+                Console.WriteLine("--> [RACIÓN REDUCIDA]: Se autoriza media ración por soldado.");
+                Console.WriteLine("    Notificación: Controlar el consumo diario.");
+            }
+            else
+            {
+                Console.WriteLine("--> [RACIÓN COMPLETA]: Se autoriza ración normal para la tropa.");
+                Console.WriteLine("    Notificación: Suministro en buen estado.");
+            }
+        // FUNCION 2: Gestiona el ciclo diario de registro y la interacción con el usuario
         }
-
-
-
-        public static void datos()
-        {
-            Console.WriteLine("Por favor dime tu nombre");
-            string nombre = Console.ReadLine();
-            Console.WriteLine("Bienvenido " + nombre);
-            Console.Write("Dime por favor cuantos años de experiencia tienes en c#");
-            int experiencia = int.Parse(Console.ReadLine());
-            Console.WriteLine("Dime un aproximado de tiempo que le dedicas a la programacion");
-            double tiempo = double.Parse(Console.ReadLine());
-            Console.WriteLine("Muchas gracias " + nombre + " " + "Tu experiencia de " + experiencia + "años" + " " + " el tiempo que le dedicas  " + " " + tiempo + "min " + " " +
-                                " sera un pilar fundamental para el desarrollo de la clase");
-        }
-        
-
-
-        /*
-         * Funciones
-         */
-        public static double Sumar(double a, double b)
-        {
-            return a + b;
-
-        }
-
-        public static double Restar(double a, double b)
-        {
-            return a - b;
-
-        }
-
-        public static double Multiplicar(double a, double b)
-        {
-            return a * b;
-
-        }
-
-        public static double Dividir(double a, double b)
-        {
-            return a / b;
-
-        }
-
     }
 }

@@ -8,36 +8,36 @@ namespace Trabajos.trabajo_Video_final
     {
         public static void Main(string[] args)
         {
-            //Console.WriteLine("Bienvenido a Programacion II - Clase02");
-            //saludar();
-            funcion1.saludar();
-            //Introducir Datos
-            funcion1.datos();
+            int opcionContinuar;
 
-            Console.WriteLine("Por favor introduce un valor para comprobar la calculadora en a");
-            double a = double.Parse(Console.ReadLine());
-            Console.WriteLine("Por favor introduce un valor para comprobar la calculadora en b");
-            double b = double.Parse(Console.ReadLine());
+            Console.WriteLine("=========================================================");
+            Console.WriteLine(" SISTEMA DE RACIONAMIENTO - FORTÍN NANAWA (CHACO 1933)   ");
+            Console.WriteLine("=========================================================");
 
-            Console.WriteLine("La suma es" + " " + funcion1.Sumar(a, b));
-            Console.WriteLine("La suma es" + " " + funcion1.Restar(a, b));
-            Console.WriteLine("La suma es" + " " + funcion1.Multiplicar(a, b));
-            Console.WriteLine("La suma es" + " " + funcion1.Dividir(a, b));
+            do
+            {
+                Console.WriteLine("\n--- REGISTRO DIARIO DE RECURSOS ---");
+                Console.Write("Ingrese la cantidad de comida disponible (en kilos): ");
 
+                // Guardamos la lectura directamente en la variable de la clase
+                funcion1.kilosDisponibles = int.Parse(Console.ReadLine());
 
-            /*
-            Console.WriteLine("La suma es" +" " + Sumar(a, b));
-            Console.WriteLine("La resta es" + " " + Restar(a, b));
-            Console.WriteLine("La multiplicacion es" + " " + Multiplicar(a, b));
-            Console.WriteLine("La division es" + " " + Dividir(a, b));
-            */
-                   /*Metodos
-                    * 
-                    * 
-                    */
+                // Llamada a la función con paréntesis VACÍOS ()
+                funcion1.CalcularRacionComida();
 
+                do
+                {
+                    Console.Write("\n¿Desea registrar el racionamiento del siguiente día? (1: Sí / 0: No): ");
+                    opcionContinuar = int.Parse(Console.ReadLine());
+
+                    if (opcionContinuar != 0 && opcionContinuar != 1)
+                    {
+                        Console.WriteLine("Opción inválida. Elija de nuevo.");
+                    }
+                } while (opcionContinuar != 0 && opcionContinuar != 1);
+
+            } while (opcionContinuar != 0);
 
         }
-    
     }
 }
