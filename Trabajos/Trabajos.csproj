@@ -5,7 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>Trabajos.trabajo_Video_final.Ejercicio</StartupObject>
+    <StartupObject>Trabajos.Program</StartupObject>
   </PropertyGroup>
 
 </Project>
