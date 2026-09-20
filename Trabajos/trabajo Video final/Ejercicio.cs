@@ -31,10 +31,10 @@ namespace Trabajos.trabajo_Video_final
             Console.WriteLine("La multiplicacion es" + " " + Multiplicar(a, b));
             Console.WriteLine("La division es" + " " + Dividir(a, b));
             */
-                    /*Metodos
+                   /*Metodos
                     * 
                     * 
-                    *
+                    */
 
 
         }
