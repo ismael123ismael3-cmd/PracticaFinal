@@ -25,7 +25,7 @@ namespace Trabajos.trabajo_Video_final
             Console.WriteLine("Muchas gracias " + nombre + " " + "Tu experiencia de " + experiencia + "años" + " " + " el tiempo que le dedicas  " + " " + tiempo + "min " + " " +
                                 " sera un pilar fundamental para el desarrollo de la clase");
         }
-        */
+        
 
 
         /*
