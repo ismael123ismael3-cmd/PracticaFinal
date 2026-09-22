@@ -1,0 +1,225 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+
+namespace Trabajos.Trabajo_en_clase
+{
+    public class Character
+    {
+        public string Name { get; set; }
+        public string Rank { get; set; }
+        public string Description { get; set; }
+        public int Morale { get; set; }
+
+        public Character(string name, string rank, string description, int morale)
+        {
+            Name = name;
+            Rank = rank;
+            Description = description;
+            Morale = morale;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine($"-- Personaje: {Name} --");
+            Console.ResetColor();
+            Console.WriteLine($"Rango: {Rank}");
+            Console.WriteLine($"Descripción: {Description}");
+            Console.WriteLine($"Moral: {Morale}\n");
+        }
+    }
+
+    // Definimos una clase para representar un evento en la guerra de trincheras
+    public class Event
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime Date { get; set; }
+        public List<string> InvolvedCharacters { get; set; }
+
+        public Event(string name, string description, DateTime date, List<string> involvedCharacters)
+        {
+            Name = name;
+            Description = description;
+            Date = date;
+            InvolvedCharacters = involvedCharacters;
+        }
+
+        public void DisplayEvent()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"-- Evento: {Name} --");
+            Console.ResetColor();
+            Console.WriteLine($"Fecha: {Date.ToShortDateString()}");
+            Console.WriteLine($"Descripción: {Description}");
+            Console.WriteLine("Personajes involucrados: " + string.Join(", ", InvolvedCharacters) + "\n");
+        }
+    }
+
+    // La clase principal donde se ejecuta el programa
+    public class Program
+    {
+        // Función para simular una animación de carga o bienvenida
+        static void PlayIntroAnimation()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\nCargando Historia...");
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write(". ");
+                Thread.Sleep(150); // Esperar un poco (en milisegundos)
+            }
+            Console.ResetColor();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("\n*** La Guerra de las Trincheras: La Historia del General Hanscunt ***\n");
+            Console.ResetColor();
+            Thread.Sleep(2000); // Esperar 2 segundos
+        }
+
+        // Función para mostrar el menú principal
+        static string DisplayMainMenu()
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine("\n--- MENÚ PRINCIPAL ---");
+            Console.ResetColor();
+            Console.WriteLine("1. Iniciar Historia");
+            Console.WriteLine("2. Ver Personajes");
+            Console.WriteLine("3. Salir");
+            Console.WriteLine("----------------------");
+            Console.Write("Introduce tu opción: ");
+            return Console.ReadLine();
+        }
+
+        // Función para iniciar el modo historia
+        static void StartStoryMode(Character generalHanscunt, List<Event> events)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("\n--- INICIANDO HISTORIA ---\n");
+            Console.ResetColor();
+            generalHanscunt.DisplayInfo();
+            Thread.Sleep(1500);
+
+            foreach (Event _event in events)
+            {
+                _event.DisplayEvent();
+                Thread.Sleep(2500); // Pausar para que el usuario pueda leer
+
+                if (_event.Name == "Escasez Crítica de Suministros")
+                {
+                    generalHanscunt.Morale -= 15;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"La moral del General Hanscunt disminuye: {generalHanscunt.Morale}\n");
+                    Console.ResetColor();
+                    Thread.Sleep(1000);
+                }
+            }
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Fin de la historia por ahora. Volviendo al menú principal.\n");
+            Console.ResetColor();
+            Thread.Sleep(3000);
+        }
+
+        // Función para ver los personajes
+        static void ViewCharacters(List<Character> characters)
+        {
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine("\n--- PERSONAJES ---\n");
+            Console.ResetColor();
+            foreach (Character character in characters)
+            {
+                character.DisplayInfo();
+                Thread.Sleep(1000);
+            }
+            Console.WriteLine("Presiona ENTER para volver al menú.");
+            Console.ReadLine(); // Esperar a que el usuario presione Enter
+        }
+
+        public static void Main(string[] args)
+        {
+            PlayIntroAnimation();
+
+            // Crear instancias de personajes y eventos
+            Character generalHanscunt = new Character(
+                "General Hanscunt",
+                "General de División",
+                "Un estratega veterano de la Gran Guerra, conocido por su tenacidad en las trincheras.",
+                80
+            );
+            List<Character> characters = new List<Character>();
+            characters.Add(generalHanscunt);
+            // Puedes añadir más personajes aquí
+
+            Event trenchAttack = new Event(
+                "Ataque a la Trinchera 7",
+                "El General Hanscunt lideró una exitosa contraofensiva para retomar la Trinchera 7, a pesar de las grandes pérdidas.",
+                new DateTime(1916, 7, 14),
+                new List<string> { "General Hanscunt", "Capitán Schmidt" }
+            );
+            Event supplyShortage = new Event(
+                "Escasez Crítica de Suministros",
+                "Una interrupción en las líneas de suministro dejó a las tropas del General Hanscunt con raciones limitadas durante tres días.",
+                new DateTime(1916, 9, 21),
+                new List<string> { "General Hanscunt", "Logística del Frente" }
+            );
+            List<Event> storyEvents = new List<Event>();
+            storyEvents.Add(trenchAttack);
+            storyEvents.Add(supplyShortage);
+            // Añade más eventos para enriquecer la historia
+
+            string choice;
+            do
+            {
+                choice = DisplayMainMenu();
+
+                switch (choice)
+                {
+                    case "1":
+                        StartStoryMode(generalHanscunt, storyEvents);
+                        break;
+                    case "2":
+                        ViewCharacters(characters);
+                        break;
+                    case "3":
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\n¡Gracias por jugar! Adiós.\n");
+                        Console.ResetColor();
+                        break;
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Opción no válida. Por favor, intenta de nuevo.\n");
+                        Console.ResetColor();
+                        Thread.Sleep(1500);
+                        break;
+                }
+            } while (choice != "3");
+
+            Thread.Sleep(2000);
+        }
+    }
+}
+/*
+Para compilar y ejecutar este código en tu máquina:
+
+Requisitos:
+  - .NET SDK (preferiblemente la última versión) instalado.
+
+Pasos:
+1. Guarda el código en un archivo llamado `HanscuntGame.cs`.
+2. Abre tu terminal o línea de comandos.
+3. Navega al directorio donde guardaste el archivo.
+4. Compila el código C# usando el comando:
+   `dotnet build`
+   (Si no funciona, intenta `csc HanscuntGame.cs` si tienes el compilador de C# directamente accesible).
+5. Ejecuta la aplicación compilada:
+   `dotnet run`
+   (O si compilaste con `csc`, ejecuta `HanscuntGame.exe` en Windows o `mono HanscuntGame.exe` en Linux/macOS si tienes Mono instalado).
+
+Disfruta de la historia interactiva del General Hanscunt!
+*/

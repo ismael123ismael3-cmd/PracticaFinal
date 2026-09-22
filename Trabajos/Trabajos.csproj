@@ -5,7 +5,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>Trabajos.Grabacion.Principal</StartupObject>
+    <StartupObject>Trabajos.Trabajo_en_clase.Program</StartupObject>
   </PropertyGroup>
 
 </Project>
