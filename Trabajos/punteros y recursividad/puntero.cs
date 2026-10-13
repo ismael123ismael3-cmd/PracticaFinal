@@ -17,7 +17,7 @@ namespace Trabajos.punteros_y_recursividad
         {
             if (n == 0)
             {
-                Console.WriteLine
+                Console.WriteLine();
             }
         }
     }
